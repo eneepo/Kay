@@ -103,6 +103,25 @@ reports.
 
 Try it for real against one of the starters in [`examples/`](examples).
 
+## Hands-off — autopilot
+
+Once a change is **specced** (you've run `/k-spec` and approved it), you don't have to
+drive the remaining four steps by hand. **`/k-autopilot <change-id>`** flies the change
+through `analyze → build → verify → review` unattended, in the current session.
+
+At each gate it reads the verdict instead of asking you: a **clean** gate (and
+nit-level findings) proceeds automatically; anything that needs a human — an analysis
+issue, a scenario still failing after its retry budget, a review blocker — **halts the
+run** with a plain-language report of what stopped it and how to resume. Fix the cause
+(or resolve that one gate by running its command directly), then re-run
+`/k-autopilot <change-id>` and it picks up from the halted phase.
+
+Invoking it is your **standing consent** for the whole run — no mid-run prompts. It
+ends at a change that's **reviewed, folded into `.kay/specs/`, and archived, ready to
+merge** — autopilot **never merges**; that last step stays yours (via `/k-review`'s
+merge step or your PR flow). If you'd rather approve each gate, just run the five
+commands individually instead.
+
 ## After a session — the retrospective
 
 Run **`/k-retro`** at the end of a working session, *before* you close the terminal —

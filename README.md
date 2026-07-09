@@ -31,10 +31,11 @@ A change flows `spec → analyze → build → verify → review`. Specs are **l
 the build forces a divergence, the spec is updated to match reality, never left to
 drift.
 
-**Companion skill:**
+**Companion skills:**
 
 | Skill | What it does |
 |---|---|
+| `/k-autopilot` | Fly one specced change through analyze → build → verify → review unattended — halting only when a gate needs you, ending at a reviewed change ready to merge (it never merges) |
 | `/k-retro` | End-of-session retrospective — a private note (what happened, what went sideways, what to change), then approval-gated routing of the durable signals |
 
 ## A note on the `k:` names
