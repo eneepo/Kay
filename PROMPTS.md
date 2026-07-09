@@ -16,9 +16,75 @@ blank lines**. Keep a folder open and create files as we go.
 
 ---
 
+## Move 0 — set the ground rules (do this once, first)
+
+A framework like Kay starts every project with `/k-init`, which writes the files the
+assistant reads on **every** later step: a **constitution** (the principles and stack
+it must obey) and a **spec-format** reference (how requirements and scenarios are
+written). By hand you create these once yourself and **keep them in context** so the
+assistant actually follows them.
+
+### 0a. The constitution — your project's house rules
+
+> **Prompt:**
+> "Write me a short `constitution.md` for a small Python CLI project. Include:
+> (1) two non-negotiable principles — **quality over speed** (flag anything that
+> trades correctness or maintainability for speed and recommend the sounder path) and
+> **plain language** (gloss jargon on first use with a quick example);
+> (2) a **gate policy** of *warn + explicit override* — surface issues and wait, never
+> silently pass, only the human overrides;
+> (3) a **Stack** section naming the language (Python 3), the test runner (pytest),
+> and the base branch (main). Keep it under a page."
+
+**What to do with it:**
+
+- Save the result as `constitution.md` in your project root.
+- **Reread it into context at the start of every SDD prompt** — the assistant only
+  obeys rules it can see. Either paste the file, or open your prompts with *"Following
+  the rules in `constitution.md`, …"*. (This is exactly what Kay automates: every
+  `/k-*` skill loads the constitution first.)
+- It's **yours** — edit it by hand as your principles or stack change; the assistant
+  should never rewrite it without you asking.
+
+### 0b. The spec conventions — so every spec looks the same
+
+You want every requirement written the same testable way, session after session.
+
+> **Prompt:**
+> "Give me a one-page `spec-format.md` cheat sheet: the **five EARS forms**
+> (Ubiquitous `THE SYSTEM SHALL…`, Event `WHEN… THE SYSTEM SHALL…`, State `WHILE…`,
+> Conditional `IF… THEN THE SYSTEM SHALL…`, Optional `WHERE… THE SYSTEM SHALL…`) with
+> one example each, plus the **GIVEN / WHEN / THEN** scenario shape. Note that every
+> requirement must be *testable* — a reader can tell pass from fail."
+
+**What to do with it:**
+
+- Save it as `spec-format.md` and reference it in your Move 1 prompt (*"using the EARS
+  forms in `spec-format.md`"*).
+- This keeps specs consistent across features — the same reason Kay seeds it once at
+  init. (Kay ships a ready-made version; you can copy
+  [`.github/skills/k-init/templates/spec-format.md`](.github/skills/k-init/templates/spec-format.md)
+  instead of generating your own.)
+
+### Where things live (by hand)
+
+No framework, no special folders — just three plain files:
+
+```
+constitution.md   # house rules            (Move 0a) — reused every session
+spec-format.md    # requirement conventions (Move 0b) — reused every session
+SPEC.md           # the current feature's spec (Move 1) — one per feature
+```
+
+Kay's `.kay/` folder is just a tidier, automated home for these same files.
+
+---
+
 ## The five moves
 
-SDD is five moves. Each is one prompt. Do them in order; don't skip ahead.
+With the ground rules from Move 0 in context, SDD is five moves. Each is one prompt.
+Do them in order; don't skip ahead. (Open each prompt with *"Following `constitution.md`
+and `spec-format.md`, …"* so the assistant keeps obeying them.)
 
 ### 1. Spec — say what you want, testably
 
@@ -117,6 +183,7 @@ You ran the exact loop Kay runs:
 
 | By hand (this file) | With Kay |
 |---|---|
+| "Write me a constitution + spec conventions, then keep them in context" | `/k-init` |
 | "Write me a spec, EARS + scenarios, no code" | `/k-spec` |
 | "Critique the spec, find gaps" | `/k-analyze` |
 | "Implement it, test-first, tell me if the spec is wrong" | `/k-build` |
