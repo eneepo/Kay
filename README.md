@@ -76,15 +76,19 @@ project, copy the `.github/skills/k-*` folders into that repo (or into
 
 ## Try it — the hands-on lab
 
-Two starter projects in [`examples/`](examples) let you run the whole loop on
-something real:
+Three starter projects in [`examples/`](examples) let you run the whole loop on
+something real, each exercising a different aspect of SDD:
 
 - [`examples/quote-cli`](examples/quote-cli) — a Python CLI **with a test runner**
   (pytest), so you see the test-first build path.
 - [`examples/tasklist-web`](examples/tasklist-web) — a plain HTML/JS page with **no
   test runner**, so you see behavioral verification.
+- [`examples/task-service`](examples/task-service) — a **multi-capability** task
+  manager (CLI + REST API over a shared core) that ships **already initialized** with
+  living specs, so you see multi-capability changes, **MODIFIED** deltas, and both
+  verification styles at once.
 
-Each has a README with a suggested feature to spec. See [`GUIDE.md`](GUIDE.md) for the
+Each has a README with suggested features to spec. See [`GUIDE.md`](GUIDE.md) for the
 walkthrough.
 
 ## License
