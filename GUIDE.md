@@ -103,6 +103,20 @@ reports.
 
 Try it for real against one of the starters in [`examples/`](examples).
 
+## After a session — the retrospective
+
+Run **`/k-retro`** at the end of a working session, *before* you close the terminal —
+while the conversation is still in context, which is its richest evidence. It writes a
+private note under `.kay/.local/retros/<date>.md` (gitignored, so no committed
+footprint) with six sections: summary, timeline, sideways & loops, communication, Kay
+improvements, and wins.
+
+Then it **triages** the improvement ideas and shows you a table before writing
+anything durable. Only after you approve does it route them: communication
+preferences to memory, quick fixes to `ROADMAP.md`, and bigger ideas to
+`.kay/.local/retro-queue.md` as ready-to-run `/k-spec` prompts for next time. Nothing
+shared is touched without your go-ahead, and it never auto-runs `/k-spec`.
+
 ## Tips
 
 - **One change at a time.** Keep changes small — one feature or fix per `kay/<id>`

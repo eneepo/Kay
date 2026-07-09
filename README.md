@@ -31,6 +31,12 @@ A change flows `spec → analyze → build → verify → review`. Specs are **l
 the build forces a divergence, the spec is updated to match reality, never left to
 drift.
 
+**Companion skill:**
+
+| Skill | What it does |
+|---|---|
+| `/k-retro` | End-of-session retrospective — a private note (what happened, what went sideways, what to change), then approval-gated routing of the durable signals |
+
 ## A note on the `k:` names
 
 In Claude Code, Zeeg's skills are namespaced as `/z:spec`, `/z:build`, and so on.
